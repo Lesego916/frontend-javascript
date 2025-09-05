@@ -1,4 +1,4 @@
-// Define Student interface
+// Interface for a student
 interface Student {
   firstName: string;
   lastName: string;
@@ -7,38 +7,38 @@ interface Student {
 }
 
 // Create two students
-const student1: Student = {
-  firstName: "John",
-  lastName: "Doe",
-  age: 20,
-  location: "London",
-};
-
-const student2: Student = {
-  firstName: "Jane",
-  lastName: "Smith",
-  age: 22,
-  location: "Paris",
-};
+const student1: Student = { firstName: 'Alice', lastName: 'Nguyen', age: 21, location: 'Cape Town' };
+const student2: Student = { firstName: 'Bongani', lastName: 'Dlamini', age: 23, location: 'Johannesburg' };
 
 // Array of students
 const studentsList: Student[] = [student1, student2];
 
-// Render table in Vanilla JS
-const table = document.createElement("table");
-const tbody = document.createElement("tbody");
+// Render a table with firstName and location (Vanilla JS)
+const table: HTMLTableElement = document.createElement('table');
+const thead: HTMLTableSectionElement = document.createElement('thead');
+const headerRow: HTMLTableRowElement = document.createElement('tr');
 
-studentsList.forEach((student) => {
-  const row = document.createElement("tr");
+['First name', 'Location'].forEach((label: string) => {
+  const th: HTMLTableCellElement = document.createElement('th');
+  th.textContent = label;
+  headerRow.appendChild(th);
+});
+thead.appendChild(headerRow);
+table.appendChild(thead);
 
-  const firstNameCell = document.createElement("td");
+const tbody: HTMLTableSectionElement = document.createElement('tbody');
+
+studentsList.forEach((student: Student) => {
+  const row: HTMLTableRowElement = document.createElement('tr');
+
+  const firstNameCell: HTMLTableCellElement = document.createElement('td');
   firstNameCell.textContent = student.firstName;
-  row.appendChild(firstNameCell);
 
-  const locationCell = document.createElement("td");
+  const locationCell: HTMLTableCellElement = document.createElement('td');
   locationCell.textContent = student.location;
-  row.appendChild(locationCell);
 
+  row.appendChild(firstNameCell);
+  row.appendChild(locationCell);
   tbody.appendChild(row);
 });
 
